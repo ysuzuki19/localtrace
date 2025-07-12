@@ -1,0 +1,17 @@
+[package]
+name = "localtrace"
+version = "0.1.0"
+edition = "2021"
+authors = ["ysuzuki19"]
+repository = "https://github.com/ysuzuki19/localtrace"
+license = "MPL-2.0"
+license-file = "LICENSE"
+description = "A local tracing library for Rust"
+exclude = [".github", ".gitignore"]
+
+[dependencies]
+backtrace = "0.3.75"
+
+
+[workspace]
+members = ["example"]
