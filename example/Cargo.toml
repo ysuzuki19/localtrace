@@ -1,0 +1,15 @@
+[package]
+name = "example"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "main_ok"
+path = "src/main_ok.rs"
+
+[[bin]]
+name = "main_err"
+path = "src/main_err.rs"
+
+[dependencies]
+localtrace = { path = ".." }
