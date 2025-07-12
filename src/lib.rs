@@ -58,7 +58,7 @@ impl fmt::Display for Error {
     }
 }
 
-pub fn with_trace<F>(f: F)
+pub fn catch_with_trace<F>(f: F)
 where
     F: FnOnce() -> Result<()>,
 {
@@ -68,7 +68,7 @@ where
 }
 
 pub mod testing {
-    pub fn with_trace<F>(f: F)
+    pub fn catch_with_trace<F>(f: F)
     where
         F: FnOnce() -> super::Result<()>,
     {
