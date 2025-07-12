@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 fn fs_err() -> localtrace::Result<()> {
     std::fs::read_to_string(String::from("non_existent_file.txt"))?;
     Ok(())
@@ -12,8 +13,8 @@ fn main() -> localtrace::Result<()> {
                 e.to_string(),
                 format!(
                     r#"message: No such file or directory (os error 2)
-- {cargo_manifest_dir}/src/main_err.rs:2
-- {cargo_manifest_dir}/src/main_err.rs:8
+- {cargo_manifest_dir}/src/main_err.rs:3
+- {cargo_manifest_dir}/src/main_err.rs:9
 "#,
                 )
             );

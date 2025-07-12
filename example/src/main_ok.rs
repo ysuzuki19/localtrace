@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 fn ok() -> localtrace::Result<()> {
     std::fs::read_to_string(String::from("Cargo.toml"))?;
     Ok(())
