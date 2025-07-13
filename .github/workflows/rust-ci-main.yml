@@ -10,7 +10,4 @@ env:
 jobs:
   ci:
     runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/rust-ci-common.yml
+    uses: ./.github/workflows/rust-ci-common.yml
