@@ -1,6 +1,6 @@
 [package]
 name = "localtrace"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["ysuzuki19"]
 repository = "https://github.com/ysuzuki19/localtrace"
