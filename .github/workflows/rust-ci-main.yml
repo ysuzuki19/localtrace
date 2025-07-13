@@ -9,5 +9,4 @@ env:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/rust-ci-common.yml
