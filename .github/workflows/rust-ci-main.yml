@@ -13,4 +13,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/rust-ci.yml
+      - uses: ./.github/workflows/rust-ci-common.yml
