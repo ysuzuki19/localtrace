@@ -11,7 +11,7 @@ jobs:
   ci:
     uses: ./.github/workflows/rust-ci.yml
 
-  push-tag:
+  cd:
     runs-on: ubuntu-latest
     needs: ci
     permissions:
@@ -26,11 +26,29 @@ jobs:
           PACKAGE="localtrace"
           VERSION=$(cargo metadata --format-version=1 --no-deps | jq -r --arg name "localtrace" '.packages[] | select(.name == $name) | .version')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-      - name: Push tag
+      - name: Check tag
+        id: tag
         run: |
           TAG="v${{ steps.metadata.outputs.version }}"
-          echo "pushing tag ${TAG}"
+          echo "name=${TAG}" >> $GITHUB_OUTPUT
+          if git rev-parse "${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} already exists, skipping push."
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push tag
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          echo "Pushing tag ${TAG}"
           git tag "${TAG}"
           git push origin "${TAG}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish
+        if: steps.tag.outputs.exists == 'false'
+        run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
