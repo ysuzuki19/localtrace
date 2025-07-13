@@ -31,10 +31,11 @@ jobs:
         run: |
           TAG="v${{ steps.metadata.outputs.version }}"
           echo "name=${TAG}" >> $GITHUB_OUTPUT
-          if git rev-parse "${TAG}" >/dev/null 2>&1; then
+          if git ls-remote --tags origin | grep -q "refs/tags/${TAG}$" >/dev/null 2>&1; then
             echo "Tag ${TAG} already exists, skipping push."
             echo "exists=true" >> $GITHUB_OUTPUT
           else
+            echo "Tag ${TAG} does not exist, will create and push."
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
         env:
