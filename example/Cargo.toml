@@ -12,5 +12,9 @@ path = "src/main_ok.rs"
 name = "main_err"
 path = "src/main_err.rs"
 
+[[bin]]
+name = "readme_quickstart"
+path = "src/readme_quickstart.rs"
+
 [dependencies]
 localtrace = { path = ".." }
