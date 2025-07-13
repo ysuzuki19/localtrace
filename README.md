@@ -94,14 +94,16 @@ localtrace::catch_with_trace(|| {
 Creates an error with the given message.
 
 ```rust
+use localtrace::{Result, trace};
+
 // trace! can receive a simple message
-fn simple_message() -> localtrace::Result<()> {
-    localtrace::trace!("Something went wrong")
+fn simple_message() -> Result<()> {
+    trace!("Something went wrong")
 }
 
 // trace! can receive a formatted message
-fn formatted_message(id: u32, reason: &str) -> localtrace::Result<()> {
-  localtrace::trace!("Failed to process item {}: {}", id, reason)
+fn formatted_message(id: u32, reason: &str) -> Result<()> {
+  trace!("Failed to process item {}: {}", id, reason)
 }
 ```
 
