@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MPL-2.0
+//!
+//! ````text
 #![doc = include_str!("../README.md")]
+//! ````
 mod macros;
 
 use core::fmt;
