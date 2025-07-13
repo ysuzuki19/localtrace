@@ -10,3 +10,25 @@ env:
 jobs:
   ci:
     uses: ./.github/workflows/rust-ci.yml
+
+  push-tag:
+    runs-on: ubuntu-latest
+    needs: ci
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract crate metadata
+        id: metadata
+        run: |
+          PACKAGE="localtrace"
+          VERSION=$(cargo metadata --format-version=1 --no-deps | jq -r --arg name "localtrace" '.packages[] | select(.name == $name) | .version')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Push tag
+        run: |
+          TAG="v${{ steps.metadata.outputs.version }}"
+          echo "pushing tag ${TAG}"
+          # git tag "${TAG}"
+          # git push origin "${TAG}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
