@@ -42,6 +42,7 @@ jobs:
       - name: Push tag
         if: steps.tag.outputs.exists == 'false'
         run: |
+          TAG="${{ steps.tag.outputs.name }}"
           echo "Pushing tag ${TAG}"
           git tag "${TAG}"
           git push origin "${TAG}"
