@@ -1,0 +1,15 @@
+name: Rust CI
+
+on:
+  push:
+    branches: ['main']
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: ./.github/workflows/rust-ci.yml
