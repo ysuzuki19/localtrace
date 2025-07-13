@@ -1,5 +1,9 @@
 # localtrace
 
+[<img alt="github" src="https://img.shields.io/badge/github-ysuzuki19/localtrace-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/ysuzuki19/localtrace)
+[<img alt="crates.io" src="https://img.shields.io/crates/v/localtrace.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/localtrace)
+[<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-localtrace-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/localtrace)
+
 A lightweight Rust library for enhanced error handling with local backtrace information.
 
 ## Overview
@@ -77,7 +81,7 @@ The main error type that captures:
 Executes a function and prints any errors to stderr.
 
 ```rust
-catch_with_trace(|| {
+localtrace::catch_with_trace(|| {
     // Your code here
     Ok(())
 });
@@ -90,14 +94,16 @@ catch_with_trace(|| {
 Creates an error with the given message.
 
 ```rust
-// Simple message
-return trace!("Something went wrong");
+// trace! can receive a simple message
+fn simple_message() -> localtrace::Result<()> {
+    localtrace::trace!("Something went wrong")
+}
 
-// Formatted message
-return trace!("Failed to process item {}: {}", id, reason);
+// trace! can receive a formatted message
+fn formatted_message(id: u32, reason: &str) -> localtrace::Result<()> {
+  localtrace::trace!("Failed to process item {}: {}", id, reason)
+}
 ```
-
-`trace!` macro generate `Err(localtrace::Error)` instance, so you must not use `Err(trace!())`.
 
 ## How It Works
 
