@@ -9,4 +9,4 @@ env:
 
 jobs:
   ci:
-    uses: ./.github/workflows/rust-ci.yml
+    uses: ./.github/workflows/ci/rust.yml

@@ -1,4 +1,4 @@
-name: Rust CI
+name: Rust fmt, lint, build and test
 
 on:
   workflow_call:
