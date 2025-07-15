@@ -9,7 +9,7 @@ env:
 
 jobs:
   ci:
-    uses: ./.github/workflows/ci/rust.yml
+    uses: ./.github/workflows/rust-fmt-lint-build-test.yml
 
   cd:
     runs-on: ubuntu-latest
