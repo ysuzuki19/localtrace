@@ -45,8 +45,8 @@ jobs:
           echo "Pushing tag ${TAG}"
           git tag "${TAG}"
           git push origin "${TAG}"
-      # - name: Publish
-      #   if: steps.tag.outputs.exists == 'false'
-      #   run: cargo publish
-      #   env:
-      #     CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
+      - name: Publish
+        if: steps.tag.outputs.exists == 'false'
+        run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
