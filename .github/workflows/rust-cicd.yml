@@ -38,8 +38,6 @@ jobs:
             echo "Tag ${TAG} does not exist, will create and push."
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push tag
         if: steps.tag.outputs.exists == 'false'
         run: |
@@ -47,8 +45,6 @@ jobs:
           echo "Pushing tag ${TAG}"
           git tag "${TAG}"
           git push origin "${TAG}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         if: steps.tag.outputs.exists == 'false'
         run: cargo publish
