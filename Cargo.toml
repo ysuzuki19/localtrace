@@ -10,9 +10,12 @@ readme = "README.md"
 keywords = ["error", "tracing", "backtrace", "debugging", "local"]
 exclude = [".github", ".gitignore"]
 
+[features]
+anyhow = ["dep:anyhow"]
+
 [dependencies]
 backtrace = "0.3.75"
-
+anyhow = { version = "1.0", optional = true }
 
 [workspace]
 members = ["example"]

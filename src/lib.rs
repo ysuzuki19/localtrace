@@ -2,6 +2,7 @@
 //!
 #![doc = include_str!("../README.md")]
 //!
+mod conversion;
 mod helpers;
 mod macros;
 pub mod testing;
