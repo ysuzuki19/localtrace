@@ -8,5 +8,6 @@ mod macros;
 pub mod testing;
 mod types;
 
+pub use conversion::ToLocaltrace;
 pub use helpers::*;
 pub use types::*;

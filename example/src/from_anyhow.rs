@@ -1,16 +1,13 @@
 // SPDX-License-Identifier: MIT
-use localtrace::{catch_with_trace, Error, Result};
+use localtrace::{catch_with_trace, Result, ToLocaltrace};
 
 fn anyhow_operation() -> anyhow::Result<()> {
     anyhow::bail!("something went wrong in anyhow")
 }
 
 fn wrapped() -> Result<()> {
-    let result = anyhow_operation();
-    match result {
-        Ok(_) => Ok(()),
-        Err(e) => Err(Error::from_anyhow(e)),
-    }
+    anyhow_operation().to_localtrace()?;
+    Ok(())
 }
 
 fn main() {
