@@ -16,5 +16,10 @@ path = "src/main_err.rs"
 name = "readme_quickstart"
 path = "src/readme_quickstart.rs"
 
+[[bin]]
+name = "from_anyhow"
+path = "src/from_anyhow.rs"
+
 [dependencies]
-localtrace = { path = ".." }
+localtrace = { path = "..", features = ["anyhow"] }
+anyhow = "1.0"
